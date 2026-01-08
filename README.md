@@ -4,16 +4,6 @@
 
 Production-ready A/B test implementation of a checkered CTA layout for Colonist.io. Transforms a weak prototype into scalable, maintainable code ready for millions of players.
 
-## 📊 Key Improvements Over Original
-
-| Aspect | Original (Weak Prototype) | Production Version |
-|--------|---------------------------|-------------------|
-| **Layout** | Unclear positioning, brittle | 2×2 CSS Grid, guaranteed checkered positioning |
-| **Responsiveness** | None | Mobile-first, 3 breakpoints, scales to 100s of devices |
-| **Scalability** | Inline styles, no component thinking | BEM naming, data-role architecture, easy variants |
-| **Accessibility** | Missing | WCAG AA compliant, keyboard nav, screen reader support |
-| **Code Quality** | Mixed concerns, hard to maintain | Separated HTML/CSS/JS, clean architecture |
-| **UX Polish** | Basic | Smooth micro-interactions, loading states, hover effects |
 
 ## ⚡ Quick Setup in JSFiddle
 
