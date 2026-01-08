@@ -5,10 +5,8 @@
 Production-ready A/B test implementation of a checkered CTA layout for Colonist.io. Transforms a weak prototype into scalable, maintainable code ready for millions of players.
 
 
-## ⚡ Quick Setup in JSFiddle
-
-### Step 1: Create New Fiddle
-Go to https://jsfiddle.net/
+### Step 1: Live
+Go to https://jsfiddle.net/laxmikant25/3a08bty5/3/
 
 ### Step 2: Panel Configuration
 - **Top-left dropdown**: Select "SCSS"
