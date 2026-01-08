@@ -1,0 +1,306 @@
+// Primary: warm orange
+$primary-bg: #ff9a3b;
+$primary-bg-hover: #ffb15f;
+$primary-text: #171717;
+
+// Secondary: calm blue-grey
+$secondary-bg: #2a3f52;
+$secondary-bg-hover: #364d63;
+$secondary-text: #f5f5f5;
+
+// Layout
+$radius-lg: 18px;
+$radius-container: 22px;
+$gap-default: 12px;
+$gap-mobile: 8px;
+$padding-container: 12px;
+$padding-mobile: 10px;
+
+// Animation & Interaction
+$transition-fast: 0.18s ease-out;
+$transition-medium: 0.25s ease-out;
+$hover-lift: -2px;
+$hover-scale: 1.02;
+$active-scale: 0.99;
+
+// Shadows & Depth
+$shadow-soft: 0 10px 25px rgba(0, 0, 0, 0.25);
+$shadow-hover: 0 14px 30px rgba(0, 0, 0, 0.35);
+
+// Typography
+$font-stack: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
+$font-size-base: 1rem;
+$font-size-subtext: 0.8rem;
+$font-size-hint: 0.75rem;
+
+// Breakpoints
+$breakpoint-tablet: 600px;
+$breakpoint-mobile: 420px;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 16px;
+  font-family: $font-stack;
+  // Dark gradient background matching Colonist aesthetic
+  background: radial-gradient(circle at top, #1a2735, #050910);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  color: #fff;
+}
+
+.cta-experiment {
+  width: 100%;
+  max-width: 500px; // Requirement: max 500px on large screens
+  margin: 0 auto;
+  color: #fff;
+}
+
+.cta-experiment__inner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  
+  // 2x2 grid, checkered (top-left + bottom-right)
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: $gap-default;
+  padding: $padding-container;
+  background: linear-gradient(135deg, #141c27, #0c1016);
+  border-radius: $radius-container;
+  box-shadow: $shadow-soft;
+  
+  // Smooth transitions for any dynamic resizing
+  transition: padding $transition-medium, gap $transition-medium;
+}
+
+.cta-experiment__spacer {
+  // Empty, just holds grid space
+}
+
+// Button styles
+
+.cta-button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+  border-radius: $radius-lg;
+  padding: 12px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 4px;
+  text-align: left;
+  aspect-ratio: 3.6 / 1;
+  position: relative;
+  overflow: hidden;
+  transition: 
+    transform $transition-fast,
+    box-shadow $transition-fast,
+    background-color $transition-fast,
+    filter $transition-fast,
+    opacity $transition-fast;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.cta-button__text {
+  font-size: $font-size-base;
+  font-weight: 700;
+  line-height: 1.3;
+  width: 100%;
+}
+
+.cta-button__subtext {
+  font-size: $font-size-subtext;
+  line-height: 1.4;
+  opacity: 0.85;
+  width: 100%;
+}
+
+.cta-button--primary {
+  background: $primary-bg;
+  color: $primary-text;
+  
+  &:hover {
+    background: $primary-bg-hover;
+  }
+}
+
+.cta-button--secondary {
+  background: $secondary-bg;
+  color: $secondary-text;
+  
+  &:hover {
+    background: $secondary-bg-hover;
+  }
+}
+
+.cta-button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 0 0, 
+    rgba(255, 255, 255, 0.22), 
+    transparent 55%
+  );
+  opacity: 0;
+  transition: opacity $transition-fast;
+  pointer-events: none;
+}
+
+.cta-button:hover,
+.cta-button:focus-visible {
+  transform: translateY($hover-lift) scale($hover-scale);
+  box-shadow: $shadow-hover;
+  
+  &::after {
+    opacity: 1;
+  }
+}
+
+.cta-button:focus-visible {
+  outline: 3px solid rgba(255, 154, 59, 0.6);
+  outline-offset: 2px;
+}
+
+.cta-button:active {
+  transform: translateY(0) scale($active-scale);
+  filter: brightness(0.96);
+}
+
+.cta-button.is-loading {
+  opacity: 0.75;
+  cursor: wait;
+  pointer-events: none;
+  animation: gentle-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes gentle-pulse {
+  0%, 100% { opacity: 0.75; }
+  50% { opacity: 0.85; }
+}
+
+.cta-button:disabled:not(.is-loading) {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.cta-experiment__hint {
+  margin: 8px 4px 0;
+  font-size: $font-size-hint;
+  line-height: 1.4;
+  opacity: 0.8;
+  text-align: center;
+}
+
+@media (max-width: $breakpoint-tablet) {
+  .cta-experiment__inner {
+    gap: $gap-mobile;
+    padding: $padding-mobile;
+  }
+  
+  .cta-button {
+    aspect-ratio: 3 / 1; // Slightly taller for better mobile touch targets
+    padding: 10px 14px;
+  }
+  
+  .cta-button__text {
+    font-size: 0.95rem;
+  }
+  
+  .cta-button__subtext {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: $breakpoint-mobile) {
+  body {
+    padding: 12px;
+  }
+  
+  .cta-experiment__inner {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto;
+    aspect-ratio: auto;
+  }
+  
+  .cta-button[data-role="join-room"] {
+    order: 1;
+  }
+  
+  .cta-experiment__spacer:nth-of-type(1) {
+    order: 2;
+    min-height: 8px;
+  }
+  
+  .cta-experiment__spacer:nth-of-type(2) {
+    order: 3;
+    min-height: 8px;
+  }
+  
+  .cta-button[data-role="leaderboard"] {
+    order: 4;
+  }
+  
+  .cta-button {
+    aspect-ratio: auto;
+    width: 100%;
+    min-height: 60px;
+  }
+  
+  .cta-experiment__hint {
+    font-size: 0.7rem;
+  }
+}
+
+@media print {
+  .cta-experiment {
+    display: none;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .cta-button {
+    border: 2px solid currentColor;
+  }
+  
+  .cta-button--primary {
+    background: #ffa500;
+    color: #000;
+  }
+  
+  .cta-button--secondary {
+    background: #1a1a1a;
+    color: #fff;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .cta-button:hover,
+  .cta-button:focus-visible {
+    transform: none;
+  }
+}

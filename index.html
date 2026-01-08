@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Colonist CTA Experiment - Checkered Layout</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- 2x2 grid checkered layout, responsive, accessible -->
+  
+  <div class="cta-experiment">
+    <div class="cta-experiment__inner">
+      <!-- Primary CTA: collaborative framing, warm orange -->
+      <button 
+        class="cta-button cta-button--primary" 
+        data-role="join-room" 
+        type="button"
+        aria-label="Play now with others - Team up and strategize in an open room"
+      >
+        <span class="cta-button__text">Play now with others</span>
+        <span class="cta-button__subtext">Team up, trade, and strategize together</span>
+      </button>
+
+      <!-- Spacers for checkered grid -->
+      <div class="cta-experiment__spacer" aria-hidden="true"></div>
+      <div class="cta-experiment__spacer" aria-hidden="true"></div>
+
+      <!-- Secondary CTA: learning focus, calm blue-grey -->
+      <button 
+        class="cta-button cta-button--secondary" 
+        data-role="leaderboard" 
+        type="button"
+        aria-label="Watch and learn from top players - See live games and tactics"
+      >
+        <span class="cta-button__text">Watch & learn from top players</span>
+        <span class="cta-button__subtext">See live games & learn new tactics</span>
+      </button>
+    </div>
+
+    <p class="cta-experiment__hint">
+      No signup required to play · Friendly community · Leave anytime
+    </p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
